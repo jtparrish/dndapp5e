@@ -1,0 +1,1 @@
+const URL: &str = "https://www.dnd5eapi.co/api/";
