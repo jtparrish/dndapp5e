@@ -1,127 +1,4 @@
-const URL: &str = "https://www.dnd5eapi.co/api/";
-
-pub fn fetch_monster(name: &str) -> Result<serde_json::Value, ()> { 
-    let mut url = format!("{}{}", URL, "monsters/").to_owned();
-    url.push_str(name);
-    println!("URL: {}", url);
-
-    let response = reqwest::blocking::get(url).map_err(|_e| ())?.text().map_err(|_e| ())?;
-    let mon_data: serde_json::Value = serde_json::from_str(&response).map_err(|_e| ())?;
-
-    Ok(mon_data)
-}
-
-enum Size {
-    Tiny,
-    Small,
-    Medium,
-    Large,
-    Gargantuan,
-    Unknown(String),
-}
-
-mod alignment {
-    enum Order {
-        Lawful,
-        Neutral,
-        Chaotic,
-        Unknown(String),
-    }
-
-    enum Moral {
-        Good,
-        Neutral,
-        Evil,
-        Unknown(String),
-    }
-
-    pub struct Alignment(Order, Moral);
-}
-
-mod r#type {
-    pub enum Type {
-        Abberation,
-        Beast,
-        Celestial,
-        Construct,
-        Dragon,
-        Elemental,
-        Fey,
-        Fiend(Option<FiendSubtype>),
-        Giant,
-        Humanoid(Option<HumanoidSubtype>),
-        Monstrosity(Option<MonstrositySubtype>),
-        Ooze,
-        Plant,
-        SwarmOfTinyBeasts,
-        Undead(UndeadSubtype),
-        Unknown(String),
-    }
-
-    pub enum FiendSubtype {
-        Demon,
-        Devil,
-        Shapechanger,
-        Unknown(String),
-    }
-
-    // NOTE: shapechanger not considered subtype
-    pub enum HumanoidSubtype {
-        AnyRace,
-        Dwarf,
-        Elf,
-        Gnoll,
-        Gnome,
-        Goblinoid,
-        Grimlock,
-        Human,
-        Kobold,
-        Lizardfolk,
-        Merfolk,
-        Orc,
-        Sahuagin,
-        Unknown(String),
-    }
-
-    pub enum MonstrositySubtype {
-        None,
-        Shapechanger,
-        Titan,
-        Unknown(String),
-    }
-
-    pub enum UndeadSubtype {
-        None,
-        Shapechanger,
-        Unknown(String),
-    }
-}
-
-enum DamageTypes {
-    Acid,
-    Bludgeoning,
-    Cold,
-    Fire,
-    Force,
-    Lightning,
-    Necrotic,
-    Piercing,
-    Poison,
-    Psychic,
-    Radiant,
-    Slashing,
-    Thunder,
-    Unknown(String),
-}
-
-struct Stats {
-    strength: u64,
-    dexterity: u64,
-    constitution: u64,
-    intelligence: u64,
-    wisdom: u64,
-    charisma: u64,
-}
+pub mod enums;
 
 struct Monster {
     // "index": "aboleth",
@@ -207,27 +84,6 @@ struct Monster {
         // none
     // ],
     condition_immunities: Vec<()>,
-
-}
-
-enum Languages {
-    Common,
-    Dwarvish,
-    Elvish,
-    Giant,
-    Gnomish,
-    Goblin,
-    Halfling,
-    Orc,
-    Abyssal,
-    Celestial,
-    Draconic,
-    DeepSpeech,
-    Infernal,
-    Primordial,
-    Sylvan,
-    Undercommon,
-    Unknown(String),
 }
 
 struct MonsterJSON {
@@ -449,4 +305,13 @@ struct MonsterJSON {
         // }
     // ],
     // "url": "/api/monsters/aboleth"
+}
+
+struct Stats {
+    strength: u64,
+    dexterity: u64,
+    constitution: u64,
+    intelligence: u64,
+    wisdom: u64,
+    charisma: u64,
 }
