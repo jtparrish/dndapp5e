@@ -1,5 +1,7 @@
 pub mod enums;
 
+use enums::*;
+
 struct Monster {
     // "index": "aboleth",
     index: String,
@@ -19,10 +21,10 @@ struct Monster {
     // hit_dice: crate::dice::DiceRoll,
     // hp roll
     hp_roll: crate::dice::DiceRoll,
-    //TODO: speed
+    //TODO:
+    speed: Speed,
     // stats
     stats: Stats,
-
     // "proficiencies": [
         // {
             // "proficiency": {
@@ -70,7 +72,6 @@ struct Monster {
     // "damage_vulnerabilities": [
         // none
     // ],
-    // TODO:
     damage_vulnerabilities: Vec<DamageTypes>,
     // "damage_resistances": [
         // none
@@ -84,6 +85,147 @@ struct Monster {
         // none
     // ],
     condition_immunities: Vec<()>,
+    // "languages": "Deep Speech, telepathy 120 ft.",
+    languages: Vec<Languages>,
+    // "challenge_rating": 10,
+    challenge_rating: u64,
+    // "xp": 5900,
+    xp: u64,
+    // "special_abilities": [
+        // {
+            // "name": "Amphibious",
+            // "desc": "The aboleth can breathe air and water."
+        // },
+        // {
+            // "name": "Mucous Cloud",
+            // "desc": "While underwater, the aboleth is surrounded by transformative mucus. A creature that touches the aboleth or that hits it with a melee attack while within 5 ft. of it must make a DC 14 Constitution saving throw. On a failure, the creature is diseased for 1d4 hours. The diseased creature can breathe only underwater.",
+            // "dc": {
+                // "dc_type": {
+                    // "index": "con",
+                    // "name": "CON",
+                    // "url": "/api/ability-scores/con"
+                // },
+                // "dc_value": 14,
+                // "success_type": "none"
+            // }
+        // },
+        // {
+            // "name": "Probing Telepathy",
+            // "desc": "If a creature communicates telepathically with the aboleth, the aboleth learns the creature's greatest desires if the aboleth can see the creature."
+        // }
+    // ],
+    // TODO:
+    special_abilities: Vec<()>,
+    // "actions": [
+        // {
+            // "name": "Multiattack",
+            // "desc": "The aboleth makes three tentacle attacks.",
+            // "options": {
+                // "choose": 1,
+                // "from": [
+                //   [
+                    // {
+                    //   "name": "Tentacle",
+                    //   "count": 3,
+                    //   "type": "melee"
+                    // }
+                //   ]
+                // ]
+            // },
+            // "damage": [
+                // none
+            // ]
+        // },
+        // {
+            // "name": "Tentacle",
+            // "desc": "Melee Weapon Attack: +9 to hit, reach 10 ft., one target. Hit: 12 (2d6 + 5) bludgeoning damage. If the target is a creature, it must succeed on a DC 14 Constitution saving throw or become diseased. The disease has no effect for 1 minute and can be removed by any magic that cures disease. After 1 minute, the diseased creature's skin becomes translucent and slimy, the creature can't regain hit points unless it is underwater, and the disease can be removed only by heal or another disease-curing spell of 6th level or higher. When the creature is outside a body of water, it takes 6 (1d12) acid damage every 10 minutes unless moisture is applied to the skin before 10 minutes have passed.",
+            // "attack_bonus": 9,
+            // "dc": {
+                // "dc_type": {
+                    // "index": "con",
+                    // "name": "CON",
+                    // "url": "/api/ability-scores/con"
+                // },
+                // "dc_value": 14,
+                // "success_type": "none"
+            // },
+            // "damage": [
+                // {
+                    // "damage_type": {
+                        // "index": "acid",
+                        // "name": "Acid",
+                        // "url": "/api/damage-types/acid"
+                    // },
+                    // "damage_dice": "2d6+5"
+                // }
+            // ]
+        // },
+        // {
+            // "name": "Tail",
+            // "desc": "Melee Weapon Attack: +9 to hit, reach 10 ft. one target. Hit: 15 (3d6 + 5) bludgeoning damage.",
+            // "attack_bonus": 9,
+            // "damage": [
+                // {
+                    // "damage_type": {
+                        // "index": "bludgeoning",
+                        // "name": "Bludgeoning",
+                        // "url": "/api/damage-types/bludgeoning"
+                    // },
+                    // "damage_dice": "3d6+5"
+                // }
+            // ]
+        // },
+        // {
+            // "name": "Enslave",
+            // "desc": "The aboleth targets one creature it can see within 30 ft. of it. The target must succeed on a DC 14 Wisdom saving throw or be magically charmed by the aboleth until the aboleth dies or until it is on a different plane of existence from the target. The charmed target is under the aboleth's control and can't take reactions, and the aboleth and the target can communicate telepathically with each other over any distance.\nWhenever the charmed target takes damage, the target can repeat the saving throw. On a success, the effect ends. No more than once every 24 hours, the target can also repeat the saving throw when it is at least 1 mile away from the aboleth.",
+            // "usage": {
+                // "type": "per day",
+                // "times": 3
+            // },
+            // "dc": {
+                // "dc_type": {
+                    // "index": "wis",
+                    // "name": "WIS",
+                    // "url": "/api/ability-scores/wis"
+                // },
+                // "dc_value": 14,
+                // "success_type": "none"
+            // },
+            // "damage": [
+                // none
+            // ]
+        // }
+    // ],
+    // TODO:
+    actions: Vec<()>,
+    // "legendary_actions": [
+        // {
+            // "name": "Detect",
+            // "desc": "The aboleth makes a Wisdom (Perception) check."
+        // },
+        // {
+            // "name": "Tail Swipe",
+            // "desc": "The aboleth makes one tail attack."
+        // },
+        // {
+            // "name": "Psychic Drain (Costs 2 Actions)",
+            // "desc": "One creature charmed by the aboleth takes 10 (3d6) psychic damage, and the aboleth regains hit points equal to the damage the creature takes.",
+            // "attack_bonus": 0,
+            // "damage": [
+                // {
+                    // "damage_type": {
+                        // "index": "psychic",
+                        // "name": "Psychic",
+                        // "url": "/api/damage-types/psychic"
+                    // },
+                    // "damage_dice": "3d6"
+                // }
+            // ]
+        // }
+    // ],
+    legendary_actions: Vec<()>,
+    // "url": "/api/monsters/aboleth"
+    url: String,
 }
 
 struct MonsterJSON {
@@ -314,4 +456,10 @@ struct Stats {
     intelligence: u64,
     wisdom: u64,
     charisma: u64,
+}
+
+struct Speed {
+    walk: Option<u64>,
+    fly: Option<u64>,
+    swim: Option<u64>,
 }
